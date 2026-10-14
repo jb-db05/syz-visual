@@ -201,6 +201,19 @@ for name, fn, kind in charts:
 
 # ------------------------------------------------------------------ TEXT
 P = lambda s: f"<p>{s}</p>"
+QUOTE_SECTION = (
+    '<div class="sec"><h2>Quote of the earnings</h2></div>'
+    '<div class="pullquote"><p class="q">&ldquo;Last quarter, we talked about 30% more capacity next year, and also '
+    'the aspiration to have another 30% increase in 2028. A lot of focus was there, but to be honest, it&rsquo;s '
+    'becoming very clear that 30% in 2027, 30% in 2028 will not allow us to meet our customer demand.&rdquo;</p>'
+    '<p class="who">Christophe Fouquet, President &amp; CEO, ASML &middot; Q3 2026 results</p></div>'
+)
+QUOTE_CSS = """
+.pullquote { border-left: 1.2mm solid #FF6C0E; padding: 1.2mm 0 1.2mm 4.5mm; margin: 0.5mm 0 2.2mm 0; break-inside: avoid; }
+.pullquote p.q { font-size: 10pt; font-style: italic; color: #202945; line-height: 1.42; margin-bottom: 1.2mm; text-align: left; }
+.pullquote p.who { font-size: 7.6pt; font-weight: 700; color: #FF6C0E; margin-bottom: 0; text-align: left; }
+"""
+
 fill = {
     "DOC_TYPE": "Research Comment",
     "THEME": "Earnings Report",
@@ -259,7 +272,7 @@ fill = {
         "interest as visibility, not backlog: it is not the same as firm orders. But a supplier that is sold out "
         "two years forward has pricing power, and the quantified decision on 2028 capacity is, in our view, the "
         "most important input for 2028 estimates."
-    ),
+    ) + QUOTE_SECTION,
     "H_C3B": "Pricing opens a path to 60% gross margins",
     "C3_COMMENT_2": P(
         "Pricing is the second lever. Sell-side analysts expect concluded price negotiations to contribute "
@@ -287,7 +300,7 @@ fill = {
     "SOURCE_LINE": "Source: Syz Research, Bloomberg, ASML, sell-side research",
 }
 
-html = open("/home/claude/template.html").read()
+html = open("/home/claude/template.html").read().replace("</style>", QUOTE_CSS + "</style>")
 for k, v in fill.items():
     html = html.replace("{{" + k + "}}", v)
 assert "{{" not in html, "unfilled placeholder"
