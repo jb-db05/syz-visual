@@ -150,7 +150,7 @@ BODY = f"""
 <h1>European Luxury: an ad-hoc opinion on Richemont, LVMH, Herm&egrave;s and Kering</h1>
 <div class="dateline">{DATE} &middot; CIO Office, Equity Team &middot; Syz Research</div>
 
-<div class="notice"><b>Important notice.</b> This note answers a client question on the luxury sector, and on Richemont in particular. It relies on public information, company meetings and third-party data. It contains no house price target and does not constitute a recommendation to buy or sell. Prices are as of {DATE}.</div>
+<div class="notice"><b>Important notice.</b> This note relies on public information, company meetings and third-party data. It contains no house price target and does not constitute a recommendation to buy or sell. Prices are as of {DATE}.</div>
 
 <h2 class="first">Where the industry is going: fewer buyers, wider gaps between winners and losers</h2>
 <div class="cols">
