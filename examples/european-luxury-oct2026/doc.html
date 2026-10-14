@@ -1,0 +1,349 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><style>
+@font-face { font-family: 'Nunito'; src: url('file:///home/user/syz-visual/examples/european-luxury-oct2026/fonts/Nunito-Regular.ttf'); font-weight: 400; }
+@font-face { font-family: 'Nunito'; src: url('file:///home/user/syz-visual/examples/european-luxury-oct2026/fonts/Nunito-Light.ttf'); font-weight: 300; }
+@font-face { font-family: 'Nunito'; src: url('file:///home/user/syz-visual/examples/european-luxury-oct2026/fonts/Nunito-SemiBold.ttf'); font-weight: 600; }
+@font-face { font-family: 'Nunito'; src: url('file:///home/user/syz-visual/examples/european-luxury-oct2026/fonts/Nunito-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'Nunito'; src: url('file:///home/user/syz-visual/examples/european-luxury-oct2026/fonts/Nunito-ExtraBold.ttf'); font-weight: 800; }
+
+@page {
+  size: A4;
+  margin: 18mm 15mm 12.5mm 15mm;
+  @top-right { content: url('file:///home/user/syz-visual/examples/european-luxury-oct2026/img/logo.png'); image-resolution: 460dpi; vertical-align: bottom; padding-top: 9mm; }
+  @top-left { content: "European Luxury \0000b7\0000a0Ad-hoc Opinion"; font-family: 'Nunito'; font-size: 7pt; color: #9AA0A8; vertical-align: bottom; padding-bottom: 1.2mm; }
+  @bottom-left {
+    content: "Syz Research \0000b7\0000a0CIO Office, Equity Team \0000b7\0000a0Ad-hoc Opinion \0000b7\0000a014 October 2026";
+    font-family: 'Nunito'; font-size: 7pt; color: #9AA0A8;
+  }
+  @bottom-right { content: counter(page) " / " counter(pages); font-family: 'Nunito'; font-size: 7pt; color: #9AA0A8; }
+}
+@page :first { @top-left { content: none; } }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito'; color: #202945; font-size: 8.9pt; line-height: 1.42; }
+b, strong { font-weight: 800; }
+
+.gradbar { height: 3.5px; background: linear-gradient(90deg, #FF6C0E 0%, #FFC545 100%); margin-bottom: 4mm; }
+.kicker { font-size: 8pt; font-weight: 700; letter-spacing: 1.6px; color: #FF6C0E; text-transform: uppercase; margin-bottom: 1.5mm; }
+h1 { font-size: 17pt; font-weight: 800; color: #202945; line-height: 1.22; margin-bottom: 1.5mm; }
+h1.big { font-size: 20pt; }
+.dateline { font-size: 8.5pt; color: #6B7280; margin-bottom: 3.5mm; }
+h2 { font-size: 11pt; font-weight: 800; color: #202945; line-height: 1.2; margin: 4mm 0 1.6mm 0; break-after: avoid; }
+h2.first { margin-top: 0; }
+h3 { font-size: 9.3pt; font-weight: 800; color: #202945; margin: 3mm 0 1.2mm 0; break-after: avoid; }
+h3:first-child { margin-top: 0; }
+h3 .n { color: #FF6C0E; }
+h3.sub { color: #FF6C0E; font-size: 8pt; letter-spacing: 1.4px; text-transform: uppercase; margin-top: 0; }
+p { margin-bottom: 2.2mm; text-align: justify; }
+
+ul { list-style: none; margin: 0 0 2.2mm 0; }
+li { position: relative; padding-left: 4mm; margin-bottom: 1.6mm; text-align: justify; }
+li::before { content: ""; position: absolute; left: 0.6mm; top: 1.55mm; width: 1.5mm; height: 1.5mm; background: #FF6C0E; border-radius: 0.4mm; }
+
+.cols { display: flex; gap: 8mm; }
+.cols > div { flex: 1; min-width: 0; }
+
+.notice { border-left: 3px solid #FF6C0E; background: #F6F7F9; padding: 3mm 4mm; margin: 1mm 0 5mm 0; font-size: 8.3pt; color: #4B5563; }
+.notice b { color: #202945; }
+
+/* At-a-glance table */
+table.glance { width: 100%; border-collapse: collapse; font-size: 8.3pt; margin-top: 1mm; }
+table.glance th { background: #202945; color: #FFFFFF; font-weight: 700; text-align: left; padding: 2.4mm 2.2mm; font-size: 7.8pt; line-height: 1.25; vertical-align: bottom; }
+table.glance th.r, table.glance td.r { text-align: right; }
+table.glance td { padding: 2.6mm 2.2mm; border-bottom: 1px solid #E3E6EA; vertical-align: top; }
+table.glance tr:nth-child(even) td { background: #F8F9FA; }
+table.glance .tk { color: #8A8F98; font-size: 7.6pt; }
+.bull { color: #3BAF90; font-weight: 800; }
+.bear { color: #AC5D85; font-weight: 800; }
+.note { font-size: 7.4pt; color: #6B7280; margin-top: 2mm; text-align: left; }
+
+/* Company header */
+.co-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3mm; }
+.co-head h1 { margin: 0; }
+.ticker { font-size: 8pt; font-weight: 700; color: #8A8F98; letter-spacing: 1px; }
+.kpis { display: flex; gap: 3.5mm; margin-bottom: 2.5mm; }
+.kpi { flex: 1; border-top: 2px solid #FF6C0E; padding-top: 1.6mm; }
+.kpi .l { font-size: 7.4pt; color: #6B7280; }
+.kpi .v { font-size: 13pt; font-weight: 800; color: #202945; line-height: 1.2; }
+.kpi .v.o { color: #FF6C0E; }
+.band { display: flex; background: #202945; border-radius: 2.5mm; padding: 2.6mm 4mm; margin-bottom: 4.5mm; gap: 3.5mm; }
+.band > div { flex: 1; }
+.band .l { font-size: 7.2pt; color: #FFA400; font-weight: 600; }
+.band .v { font-size: 10pt; font-weight: 800; color: #FFFFFF; }
+
+.concl { border-top: 2px solid #202945; margin-top: 4mm; padding-top: 2.5mm; }
+.concl h3 { margin-top: 0; }
+
+.bottomline { background: #202945; border-radius: 3.5mm; padding: 4mm 5.5mm; color: #FFFFFF; margin-top: 5mm; }
+.bottomline .bl-head { font-size: 7.8pt; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #FFA400; margin-bottom: 1.6mm; }
+.bottomline p { color: #E8EAEF; margin-bottom: 0; font-size: 9.3pt; }
+
+/* Technical charts pages */
+.chart-title { font-size: 9.5pt; font-weight: 700; color: #202945; margin: 1mm 0 1.5mm 0; }
+.chart-title .num { color: #FF6C0E; }
+.chart-sub { font-size: 7.2pt; color: #6B7280; margin: -1mm 0 1.6mm 0; }
+img.chart { width: 100%; display: block; margin: 0 auto 2mm auto; }
+.signals { background: #F4F5F7; border-radius: 3mm; padding: 3mm 4.5mm; margin: 2.5mm 0 4mm 0; }
+.signals .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.4mm; }
+.signals .kick { font-size: 7.6pt; font-weight: 800; letter-spacing: 1.8px; color: #FF6C0E; text-transform: uppercase; }
+.pill { font-size: 7pt; font-weight: 800; letter-spacing: 0.8px; color: #FFFFFF; border-radius: 3mm; padding: 0.8mm 3mm; }
+.pill.pos { background: #3BAF90; }
+.pill.neg { background: #AC5D85; }
+.tri { display: inline-block; width: 0; height: 0; border-left: 1.1mm solid transparent; border-right: 1.1mm solid transparent; margin-right: 1.2mm; vertical-align: 0.15mm; }
+.tri.up { border-bottom: 1.6mm solid #FFFFFF; }
+.tri.dn { border-top: 1.6mm solid #FFFFFF; }
+.signals p { margin: 0; font-size: 8.4pt; }
+.caption { font-size: 7.8pt; color: #4B5563; margin-top: 2mm; }
+.src { font-size: 7.4pt; color: #9AA0A8; margin-top: 2mm; }
+.src .syz { color: #FF6C0E; font-weight: 800; }
+
+/* Legal page */
+.legal { font-size: 6.8pt; color: #9AA0A8; line-height: 1.4; }
+.legal .disc-head { color: #FF6C0E; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; margin: 6mm 0 1.5mm 0; font-size: 7.4pt; }
+.legal p { font-size: 6.8pt; margin-bottom: 1.6mm; text-align: justify; }
+.sources p { margin-bottom: 1.8mm; }
+
+.pagebreak { page-break-before: always; }
+</style></head><body>
+<!-- PAGE 1 -->
+<div class="gradbar"></div>
+<div class="kicker">Ad-hoc Opinion &middot; European Luxury</div>
+<h1>European Luxury: an ad-hoc opinion on Richemont, LVMH, Herm&egrave;s and Kering</h1>
+<div class="dateline">14 October 2026 &middot; CIO Office, Equity Team &middot; Syz Research</div>
+
+<div class="notice"><b>Important notice.</b> This note answers a client question on the luxury sector, and on Richemont in particular. It relies on public information, company meetings and third-party data. It contains no house price target and does not constitute a recommendation to buy or sell. Prices are as of 14 October 2026.</div>
+
+<h2 class="first">Where the industry is going: fewer buyers, wider gaps between winners and losers</h2>
+<div class="cols">
+<div>
+<p>After a decade of strong growth, luxury has entered a slower phase. The global market for personal luxury goods shrank by about 2% in 2025, to around &euro;358bn, and the number of luxury buyers fell to about 330 million, from 400 million in 2022. Those who left are mostly &ldquo;aspirational&rdquo; clients: middle-class shoppers who stretched to buy a bag or a belt when prices were lower.</p>
+<p>China, once the engine of the industry, is now a drag. Chinese clients made up about a third of the global market in 2018 and less than a fifth today. New taxes on purchases made abroad and a weak economy hit spending again this summer: at LVMH, sales to Chinese clients fell by about 15% in the third quarter.</p>
+</div>
+<div>
+<p>The United States has become the main source of growth, supported by wealthy households and strong stock markets. Results now diverge sharply between categories and brands. Jewellery keeps growing fast, while handbags and fashion struggle. Brands that renewed their designers and products are winning clients back; those that relied on logos and repeated price increases are losing them.</p>
+<p><b>What this means for investors.</b> Owning &ldquo;luxury&rdquo; as a block no longer works. The companies that hold up have strong momentum in jewellery, a loyal and wealthy clientele, and prices that clients still accept. Richemont is today the clearest example. LVMH, Herm&egrave;s and Kering all trade close to their lowest levels of the past two years.</p>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="pagebreak"></div><div class="gradbar"></div>
+<h1>What could move the shares</h1>
+<div class="cols" style="margin-top:3mm">
+<div>
+<h3 class="sub">The drivers</h3>
+<ul>
+<li><b>China.</b> Some companies saw an improvement in September, but part of it came from the earlier timing of a holiday. October figures will show whether it lasts.</li>
+<li><b>The wealthy American client.</b> US buyers are now the main growth engine. Their spending follows stock markets, so a market correction is the main risk here.</li>
+<li><b>Gold prices.</b> Higher gold prices allowed jewellers to raise prices. With gold stabilising, this support will be smaller.</li>
+<li><b>New designers.</b> Fresh collections are bringing clients back at Dior and Celine, and Gucci&rsquo;s reset is under way.</li>
+<li><b>Price discipline.</b> Clients increasingly check resale value before buying. Brands that keep their products scarce hold up best.</li>
+</ul>
+</div>
+<div>
+<h3 class="sub">The next dates</h3>
+<ul>
+<li><b>22 October:</b> Herm&egrave;s third-quarter sales.</li>
+<li><b>Late October:</b> Kering third-quarter sales.</li>
+<li><b>Early November:</b> Chinese spending data for October, and Singles&rsquo; Day on 11 November.</li>
+<li><b>Mid-November:</b> Richemont half-year results (April to September).</li>
+<li><b>November to December:</b> the festive season in the US and Europe.</li>
+<li><b>Late January 2027:</b> LVMH full-year results.</li>
+</ul>
+</div>
+</div>
+
+<h2>The four companies at a glance</h2>
+<table class="glance">
+<tr><th>Company</th><th class="r">Share price</th><th class="r">P/E (expected profits)</th><th>Technical trend</th><th>Latest sales growth</th><th>In a few words</th></tr>
+<tr><td><b>Richemont</b><br><span class="tk">CFR SW</span></td><td class="r">CHF&nbsp;173.8</td><td class="r">22.9x</td><td class="bull">Bullish</td><td>+20% (April to June)</td><td>Jewellery leader, fastest growth in the sector</td></tr>
+<tr><td><b>LVMH</b><br><span class="tk">MC FP</span></td><td class="r">EUR&nbsp;391.0</td><td class="r">16.2x</td><td class="bear">Bearish</td><td>+1% (July to September)</td><td>Cheap, diversified, fashion under pressure</td></tr>
+<tr><td><b>Herm&egrave;s</b><br><span class="tk">RMS FP</span></td><td class="r">EUR&nbsp;1,310.5</td><td class="r">27x</td><td class="bear">Bearish</td><td>+6% (January to June)</td><td>Highest quality, premium being questioned</td></tr>
+<tr><td><b>Kering</b><br><span class="tk">KER FP</span></td><td class="r">EUR&nbsp;213.0</td><td class="r">24x</td><td class="bear">Bearish</td><td>+1% (January to June)</td><td>Turnaround around Gucci, early days</td></tr>
+</table>
+<div class="note">Sales growth at constant exchange rates and scope. The P/E ratio shows how many years of expected profits the share price represents: the higher it is, the more growth the market already expects. Kering&rsquo;s ratio is high because its profits are still depressed.</div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<div class="co-head"><h1 class="big">Richemont</h1><span class="ticker">CFR SW</span></div>
+<div class="kpis"><div class="kpi"><div class="l">Share price</div><div class="v">CHF 173.8</div></div><div class="kpi"><div class="l">From the August high</div><div class="v o">&minus;14%</div></div><div class="kpi"><div class="l">P/E (expected profits)</div><div class="v">22.9x</div></div><div class="kpi"><div class="l">Next results</div><div class="v">mid-November</div></div></div>
+<div class="band"><div><div class="l">Technical trend</div><div class="v">Bullish</div></div><div><div class="l">Support</div><div class="v">CHF 166.2 / 160.3</div></div><div><div class="l">Resistance</div><div class="v">CHF 180.8 / 202.2</div></div><div><div class="l">Trend would weaken below</div><div class="v">CHF 167.7</div></div></div>
+<div class="cols"><div><h3><span class="n">1.</span> What the company does</h3>
+<p>Richemont is a Geneva-based luxury group. Its two jewellers, Cartier and Van Cleef &amp; Arpels, make up about 70% of sales and most of the profit. It also owns watchmakers such as IWC, Jaeger-LeCoultre, Piaget and Panerai, and a few fashion brands. About three quarters of sales are made directly to clients, in its own stores and online.</p>
+<h3><span class="n">2.</span> Why it could do well</h3>
+<ul>
+<li><b>The fastest growth among large luxury groups.</b> Sales reached &euro;6.33bn between April and June, up 20% at constant exchange rates, well above the roughly 11.5% analysts expected. Jewellery grew 24%.</li>
+<li><b>Growth in every major region.</b> Sales rose 27% in the Americas and 21% in Asia-Pacific, with double-digit growth in China, Hong Kong and Macau. Most peers are shrinking in China.</li>
+<li><b>Jewellery is a sturdier category.</b> Clients see a Cartier or Van Cleef piece as something that keeps its value. The best-selling lines change little over decades, so fashion risk is low.</li>
+</ul>
+<h3><span class="n">3.</span> What sets it apart</h3>
+<p>Two of the strongest jewellery brands in the world, with iconic collections sold for decades. The jewellery business earned an operating margin of about 30% last year. The Rupert family controls the group and favours the long term; the group is also slimming its watch portfolio, with Baume &amp; Mercier being sold.</p></div><div><h3><span class="n">4.</span> Is the share expensive?</h3>
+<p>More than LVMH, less than Herm&egrave;s: the share price represents about 23 years of expected profits, against about 16 for LVMH and 27 for Herm&egrave;s. That premium over LVMH pays for the best growth in luxury. It also means there is little room for disappointment. After reaching a record of CHF 202.2 on 11 August, the share fell back about 14%. Most analysts remain positive, but some consider that the good news is now largely in the price.</p>
+<h3><span class="n">5.</span> Main risks</h3>
+<ul>
+<li>Gold prices: part of recent growth came from price increases linked to gold. With gold stabilising, this support fades, and gold costs weigh on margins.</li>
+<li>Tougher comparisons: after very strong quarters, even good growth can disappoint the market.</li>
+<li>A stock-market correction in the US would hit the wealthy American buyers who now drive growth.</li>
+<li>A strong Swiss franc reduces the value of sales made in dollars and yuan.</li>
+</ul>
+<h3><span class="n">6.</span> What to watch next</h3>
+<p>Half-year results (April to September) in mid-November: jewellery growth, margins after higher gold costs, the trend in China and the watch business.</p><div class="concl"><h3>Conclusion</h3><p>Richemont is the strongest company in the sector, both in its business and on the chart. The valuation is high, so the timing of purchases matters. The next page looks at the entry point and at how to manage an existing position.</p></div></div></div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<h1 class="big">Richemont: our view on the share</h1>
+<h2>Where is the stock?</h2>
+<p>The long-term trend is still upward. The share trades above its 200-day average (CHF 167.7), which keeps rising. After its record of CHF 202.2 on 11 August, it fell back to CHF 166.5 in September and CHF 166.2 on 8 October, twice stopping on that average. This looks like a pause within the uptrend rather than a reversal, as long as CHF 160.3 holds. Momentum is neutral and leaves room for a rebound towards CHF 179.9 to 180.8.</p>
+<h2>Is it a good time to buy?</h2>
+<p>The setup is more favourable than in the summer. The share has given back about 14% while the business keeps growing fast, and it rests on its long-term support. The valuation remains high, though, so the entry point matters.</p>
+<p>For an investor without a position, a gradual approach makes sense: a first part close to the current support (CHF 166 to 174), and the rest either once the share closes above CHF 180.8, which would confirm that the uptrend has resumed, or after the half-year results in mid-November. A close below CHF 160.3 would call this view into question.</p>
+<h2>How to handle an existing position?</h2>
+<p>Keeping the position is justified: the business is the strongest in the sector and the chart still supports it. Three levels help manage it:</p>
+<ul>
+<li><b>Above CHF 180.8:</b> the uptrend resumes, with CHF 202.2 as the next objective.</li>
+<li><b>Below CHF 167.7:</b> the trend turns neutral; a good moment to review the size of the position.</li>
+<li><b>Below CHF 160.3:</b> the trend turns negative, and reducing the position becomes reasonable.</li>
+</ul>
+<p>After the strong run of recent years, the position may have grown larger than intended. Trimming it back to its target weight is sound discipline, whatever the outlook. The results in mid-November are likely to move the share sharply in either direction.</p>
+<h2>How does it compare with its peers?</h2>
+<p>For an investor who wants exposure to luxury today, Richemont is the most direct way to own the category that is growing: jewellery. LVMH is much cheaper but has yet to show a return to growth. Herm&egrave;s remains the highest-quality name, but its premium is being questioned. Kering is a higher-risk turnaround. The following pages cover each of them.</p>
+<div class="bottomline"><div class="bl-head">In short</div>
+<p>Richemont is the quality leader of the sector and its uptrend is intact. The recent pullback offers a better entry point than in the summer, best used gradually given the valuation. Existing positions can be kept, with CHF 167.7 and CHF 160.3 as the levels to watch.</p></div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<div class="co-head"><h1 class="big">Richemont: technical charts</h1><span class="ticker">CFR SW</span></div>
+<div class="chart-title"><span class="num">Chart 1</span> &middot; Richemont &ndash; Price, moving averages and momentum</div>
+<div class="chart-sub">Daily, log scale &middot; 50-day average (blue), 200-day average (red) &middot; lower panel: stochastic momentum</div>
+<img class="chart" src="file:///home/user/syz-visual/examples/european-luxury-oct2026/img/cfr_top.png">
+<div class="signals"><div class="top"><span class="kick">Breakout &amp; momentum signals</span><span class="pill pos"><span class="tri up"></span>POSITIVE</span></div><p><b>The last band broken was the upper band</b> &mdash; a new 100-day high at <b>CHF 202.2</b> on 11 August 2026, a positive trend signal; the lower band (<b>CHF 160.3</b>) has not been broken since 23 March 2026. <b>Long-term momentum is positive:</b> the latest bar is blue, so the momentum regime remains constructive.</p></div>
+<div class="chart-title"><span class="num">Chart 2</span> &middot; Richemont &ndash; Trend regime and 100-day range</div>
+<div class="chart-sub">Daily, log scale &middot; bars coloured by the slope of the 200-day average &middot; dotted lines: 100-day high and low</div>
+<img class="chart" src="file:///home/user/syz-visual/examples/european-luxury-oct2026/img/cfr_bot.png">
+<div class="caption">Top chart: share price with the 50-day average (blue) and the 200-day average (red); the lower panel shows momentum. Bottom chart: bars in blue when the 200-day average is rising, in red when it is falling; the dotted lines show the highest and lowest price of the last 100 days.</div>
+<div class="src"><span class="syz">SYZ</span> Source: Syz Research, Bloomberg.</div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<div class="co-head"><h1 class="big">LVMH</h1><span class="ticker">MC FP</span></div>
+<div class="kpis"><div class="kpi"><div class="l">Share price</div><div class="v">EUR 391.0</div></div><div class="kpi"><div class="l">Third-quarter growth</div><div class="v o">+1%</div></div><div class="kpi"><div class="l">P/E (expected profits)</div><div class="v">16.2x</div></div><div class="kpi"><div class="l">Two-year low</div><div class="v">EUR 375.7</div></div></div>
+<div class="band"><div><div class="l">Technical trend</div><div class="v">Bearish</div></div><div><div class="l">Support</div><div class="v">EUR 375.7</div></div><div><div class="l">Resistance</div><div class="v">EUR 423.5 / 441.3</div></div><div><div class="l">Trend would change above</div><div class="v">EUR 484.0</div></div></div>
+<div class="cols"><div><h3><span class="n">1.</span> What the company does</h3>
+<p>LVMH is the world&rsquo;s largest luxury group, with brands such as Louis Vuitton, Dior, Celine, Loro Piana, Tiffany, Bulgari, Sephora, Mo&euml;t and Hennessy. Fashion and leather goods are the largest business and earn most of the profit.</p>
+<h3><span class="n">2.</span> Why it could do well</h3>
+<ul>
+<li><b>Other businesses offset fashion.</b> In the third quarter, Sephora grew 8%, wines and spirits 6%, and watches and jewellery 6%, while fashion and leather goods fell 5%.</li>
+<li><b>The US is holding up.</b> Sales there rose 5%. New collections are working well with American clients at Dior and Celine.</li>
+<li><b>Cheap compared with its history and peers.</b> The share trades at about 16 years of expected profits, the lowest of the four companies in this note.</li>
+<li><b>Debt is falling.</b> Net debt should drop from &euro;18.6bn at the end of 2025 to about &euro;13.5bn at the end of 2026, according to broker estimates.</li>
+</ul>
+<h3><span class="n">3.</span> What sets it apart</h3>
+<p>No other group has such a broad portfolio of brands, or as much weight with landlords, media and talent. Management rules out price cuts and is working on efficiency instead: selling more of what is produced, lowering store costs and renegotiating rents.</p></div><div><h3><span class="n">4.</span> Is the share cheap?</h3>
+<p>Yes, but for a reason. Third-quarter growth of 1% was slightly below expectations, and the share fell to its lowest level in two years. In a meeting with management after the results, the group described China as a temporary problem and pointed to an improvement in September. We are more cautious: that improvement was helped by the earlier timing of a holiday. With a third of sales flat, the rest of the group would need to grow about 9% to reach 6% overall. The valuation offers a floor, but a rebound needs proof of growth.</p>
+<h3><span class="n">5.</span> Main risks</h3>
+<ul>
+<li>China: sales to Chinese clients fell about 15% in the third quarter.</li>
+<li>Louis Vuitton, the most profitable brand, is the weakest, and renewing its core products will take time.</li>
+<li>Margins: management admits they are hard to protect at this level of growth.</li>
+</ul>
+<h3><span class="n">6.</span> What to watch next</h3>
+<p>Chinese spending in October, early signs of renewal at Louis Vuitton, the festive season, and full-year results in late January 2027.</p><div class="concl"><h3>Conclusion</h3><p>LVMH is cheap, but there is no visible return to growth yet, and the chart remains negative. It is a candidate for later, once China stabilises and Louis Vuitton shows renewal, rather than an alternative to Richemont today.</p></div></div></div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<div class="co-head"><h1 class="big">LVMH: technical charts</h1><span class="ticker">MC FP</span></div>
+<div class="chart-title"><span class="num">Chart 1</span> &middot; LVMH &ndash; Price, moving averages and momentum</div>
+<div class="chart-sub">Daily, log scale &middot; 50-day average (blue), 200-day average (red) &middot; lower panel: stochastic momentum</div>
+<img class="chart" src="file:///home/user/syz-visual/examples/european-luxury-oct2026/img/mc_top.png">
+<div class="signals"><div class="top"><span class="kick">Breakout &amp; momentum signals</span><span class="pill neg"><span class="tri dn"></span>NEGATIVE</span></div><p><b>The last band broken was the lower band</b> &mdash; a new 100-day low at <b>EUR 375.7</b> on 13 October 2026, a negative trend signal; the upper band (<b>EUR 537.2</b>) has not been broken since 13 November 2025. <b>Long-term momentum is negative:</b> the latest bar is red, so the momentum regime remains weak.</p></div>
+<div class="chart-title"><span class="num">Chart 2</span> &middot; LVMH &ndash; Trend regime and 100-day range</div>
+<div class="chart-sub">Daily, log scale &middot; bars coloured by the slope of the 200-day average &middot; dotted lines: 100-day high and low</div>
+<img class="chart" src="file:///home/user/syz-visual/examples/european-luxury-oct2026/img/mc_bot.png">
+<div class="caption">Top chart: share price with the 50-day average (blue) and the 200-day average (red); the lower panel shows momentum. Bottom chart: bars in blue when the 200-day average is rising, in red when it is falling; the dotted lines show the highest and lowest price of the last 100 days.</div>
+<div class="src"><span class="syz">SYZ</span> Source: Syz Research, Bloomberg.</div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<div class="co-head"><h1 class="big">Herm&egrave;s</h1><span class="ticker">RMS FP</span></div>
+<div class="kpis"><div class="kpi"><div class="l">Share price</div><div class="v">EUR 1,310.5</div></div><div class="kpi"><div class="l">First-half growth</div><div class="v o">+6%</div></div><div class="kpi"><div class="l">P/E (expected profits)</div><div class="v">27x</div></div><div class="kpi"><div class="l">Next sales figures</div><div class="v">22 October</div></div></div>
+<div class="band"><div><div class="l">Technical trend</div><div class="v">Bearish</div></div><div><div class="l">Support</div><div class="v">EUR 1,255.0</div></div><div><div class="l">Resistance</div><div class="v">EUR 1,445.9 / 1,465.5</div></div><div><div class="l">Trend would change above</div><div class="v">EUR 1,703.4</div></div></div>
+<div class="cols"><div><h3><span class="n">1.</span> What the company does</h3>
+<p>Herm&egrave;s is a family-controlled Paris house best known for its Birkin and Kelly bags, its silk scarves and its ready-to-wear. Leather goods are its largest business. It deliberately limits production, so its best-known bags are often sold through waiting lists.</p>
+<h3><span class="n">2.</span> Why it could do well</h3>
+<ul>
+<li><b>Still growing in a weak market.</b> First-half sales reached &euro;8.16bn, up 6% at constant exchange rates, with an acceleration to 7% in the second quarter. Leather goods grew 10%.</li>
+<li><b>Strong in the regions that matter now.</b> Sales rose 15% in the Americas and 11% in Japan.</li>
+<li><b>Exceptional profitability.</b> The operating margin held at about 41% in the first half despite a strong euro, which reduced reported sales by more than &euro;360m.</li>
+</ul>
+<h3><span class="n">3.</span> What sets it apart</h3>
+<p>Scarcity, craftsmanship and family control. Herm&egrave;s makes most of its products itself and keeps supply below demand. Its iconic bags often resell above their shop price, which supports its pricing power.</p></div><div><h3><span class="n">4.</span> Is the share expensive?</h3>
+<p>Herm&egrave;s has always traded at a large premium: about 27 years of expected profits today, the highest of the four companies in this note. That premium assumed double-digit growth for many years. Growth has slowed to mid-single digits, and in October several brokers turned more cautious, arguing that scarcity is weakening and demand is becoming more cyclical. The share has fallen about 27% since its June high and reached a two-year low of EUR 1,255.0 on 7 October.</p>
+<h3><span class="n">5.</span> Main risks</h3>
+<ul>
+<li>Asia outside Japan grew only 2% in the first half, and the Middle East declined.</li>
+<li>The premium valuation leaves little room for any further slowdown.</li>
+<li>A strong euro reduces the value of sales made abroad.</li>
+</ul>
+<h3><span class="n">6.</span> What to watch next</h3>
+<p>Third-quarter sales on 22 October: leather goods growth, the trend in Asia, and whether the US remains strong.</p><div class="concl"><h3>Conclusion</h3><p>Herm&egrave;s remains the highest-quality company in the sector, but the market is reassessing how much it should pay for slower growth. The chart is negative, although the share is starting to stabilise above EUR 1,255. Waiting for the 22 October figures seems prudent.</p></div></div></div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<div class="co-head"><h1 class="big">Herm&egrave;s: technical charts</h1><span class="ticker">RMS FP</span></div>
+<div class="chart-title"><span class="num">Chart 1</span> &middot; Herm&egrave;s &ndash; Price, moving averages and momentum</div>
+<div class="chart-sub">Daily, log scale &middot; 50-day average (blue), 200-day average (red) &middot; lower panel: stochastic momentum</div>
+<img class="chart" src="file:///home/user/syz-visual/examples/european-luxury-oct2026/img/rms_top.png">
+<div class="signals"><div class="top"><span class="kick">Breakout &amp; momentum signals</span><span class="pill neg"><span class="tri dn"></span>NEGATIVE</span></div><p><b>The last band broken was the lower band</b> &mdash; a new 100-day low at <b>EUR 1255.0</b> on 7 October 2026, a negative trend signal; the upper band (<b>EUR 1793.0</b>) has not been broken since 15 January 2026. <b>Long-term momentum is negative:</b> the latest bar is red, so the momentum regime remains weak.</p></div>
+<div class="chart-title"><span class="num">Chart 2</span> &middot; Herm&egrave;s &ndash; Trend regime and 100-day range</div>
+<div class="chart-sub">Daily, log scale &middot; bars coloured by the slope of the 200-day average &middot; dotted lines: 100-day high and low</div>
+<img class="chart" src="file:///home/user/syz-visual/examples/european-luxury-oct2026/img/rms_bot.png">
+<div class="caption">Top chart: share price with the 50-day average (blue) and the 200-day average (red); the lower panel shows momentum. Bottom chart: bars in blue when the 200-day average is rising, in red when it is falling; the dotted lines show the highest and lowest price of the last 100 days.</div>
+<div class="src"><span class="syz">SYZ</span> Source: Syz Research, Bloomberg.</div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<div class="co-head"><h1 class="big">Kering</h1><span class="ticker">KER FP</span></div>
+<div class="kpis"><div class="kpi"><div class="l">Share price</div><div class="v">EUR 213.0</div></div><div class="kpi"><div class="l">First-half growth</div><div class="v o">+1%</div></div><div class="kpi"><div class="l">Gucci, first half</div><div class="v o">&minus;5%</div></div><div class="kpi"><div class="l">Net debt, June</div><div class="v">&euro;3.3bn</div></div></div>
+<div class="band"><div><div class="l">Technical trend</div><div class="v">Bearish</div></div><div><div class="l">Support</div><div class="v">EUR 203.2</div></div><div><div class="l">Resistance</div><div class="v">EUR 225.1 / 240.7</div></div><div><div class="l">Trend would change above</div><div class="v">EUR 256.0</div></div></div>
+<div class="cols"><div><h3><span class="n">1.</span> What the company does</h3>
+<p>Kering owns Gucci, Saint Laurent, Bottega Veneta and Balenciaga, as well as jewellers such as Boucheron and Pomellato. Gucci is by far the largest brand and made around 60% of group profit last year. The beauty business was sold to L&rsquo;Or&eacute;al.</p>
+<h3><span class="n">2.</span> Why it could do well</h3>
+<ul>
+<li><b>Back to growth.</b> Second-quarter sales rose 2%, the first increase in three years. Gucci&rsquo;s decline narrowed from 8% in the first quarter to 2% in the second.</li>
+<li><b>Much less debt.</b> Net debt fell from &euro;8bn at the end of 2025 to &euro;3.3bn in June, thanks to the beauty sale and a property deal.</li>
+<li><b>A clear recovery plan.</b> The new chief executive, Luca de Meo, aims to more than double the operating margin from 11%, cut inventory by &euro;1bn and close about 100 stores this year.</li>
+<li><b>Jewellery is growing fast,</b> up about 20% in the first half, led by Boucheron.</li>
+</ul>
+<h3><span class="n">3.</span> What sets it apart</h3>
+<p>If the recovery works, Kering has the most room to improve in the sector: its margin of 12.8% in the first half is far below its peers. Demna, Gucci&rsquo;s new designer, is resetting the brand around leather goods.</p></div><div><h3><span class="n">4.</span> Is the share cheap?</h3>
+<p>Not really. The share price represents about 24 years of expected profits, more than Richemont, because profits are still depressed. The share price is a bet on Gucci&rsquo;s recovery: Gucci&rsquo;s sales have nearly halved in three years. The plan sets no precise sales or margin targets for 2026 and 2027, which makes progress harder to measure. Analysts remain largely cautious.</p>
+<h3><span class="n">5.</span> Main risks</h3>
+<ul>
+<li>A brand reset like Gucci&rsquo;s usually takes years, and the first collections may disappoint.</li>
+<li>Store closures and lower stock reduce sales before they improve margins.</li>
+<li>Gucci relies more than its peers on the aspirational client who is leaving the market.</li>
+</ul>
+<h3><span class="n">6.</span> What to watch next</h3>
+<p>Third-quarter sales in late October, especially Gucci&rsquo;s trend, and how clients receive Demna&rsquo;s first collections in stores.</p><div class="concl"><h3>Conclusion</h3><p>Kering has made real progress on debt and costs, but Gucci is not growing yet and the share has broken below its May low. It suits only investors who accept a high level of risk. Signs that Gucci is growing again would be the trigger to look again.</p></div></div></div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<div class="co-head"><h1 class="big">Kering: technical charts</h1><span class="ticker">KER FP</span></div>
+<div class="chart-title"><span class="num">Chart 1</span> &middot; Kering &ndash; Price, moving averages and momentum</div>
+<div class="chart-sub">Daily, log scale &middot; 50-day average (blue), 200-day average (red) &middot; lower panel: stochastic momentum</div>
+<img class="chart" src="file:///home/user/syz-visual/examples/european-luxury-oct2026/img/ker_top.png">
+<div class="signals"><div class="top"><span class="kick">Breakout &amp; momentum signals</span><span class="pill neg"><span class="tri dn"></span>NEGATIVE</span></div><p><b>The last band broken was the lower band</b> &mdash; a new 100-day low at <b>EUR 203.2</b> on 2 October 2026, a negative trend signal; the upper band (<b>EUR 293.5</b>) has not been broken since 6 August 2026. <b>Long-term momentum is negative:</b> the latest bar is red, so the momentum regime remains weak.</p></div>
+<div class="chart-title"><span class="num">Chart 2</span> &middot; Kering &ndash; Trend regime and 100-day range</div>
+<div class="chart-sub">Daily, log scale &middot; bars coloured by the slope of the 200-day average &middot; dotted lines: 100-day high and low</div>
+<img class="chart" src="file:///home/user/syz-visual/examples/european-luxury-oct2026/img/ker_bot.png">
+<div class="caption">Top chart: share price with the 50-day average (blue) and the 200-day average (red); the lower panel shows momentum. Bottom chart: bars in blue when the 200-day average is rising, in red when it is falling; the dotted lines show the highest and lowest price of the last 100 days.</div>
+<div class="src"><span class="syz">SYZ</span> Source: Syz Research, Bloomberg.</div>
+
+<div class="pagebreak"></div><div class="gradbar"></div>
+<h1 class="big">Sources</h1>
+<div class="sources" style="margin-top:3mm">
+<p>Market data, prices, valuation ratios and technical levels: Bloomberg, as of 14 October 2026 (intraday).</p>
+<p>Company information: published results and investor relations websites of Compagnie Financi&egrave;re Richemont SA, LVMH Mo&euml;t Hennessy Louis Vuitton SE, Herm&egrave;s International SCA and Kering SA; meeting with LVMH management following the third-quarter 2026 results.</p>
+<p>Industry data: Bain &amp; Company and Altagamma.</p>
+<p>Technical analysis: Syz Research, Bloomberg.</p>
+</div>
+<div class="legal">
+  <div class="disc-head">Important information</div>
+  <p>This communication has been issued and made available to recipients for the purpose of advertising investment services and/or financial instruments. It has been sent for information purposes and cannot be considered as an offer or a personalised recommendation to buy or sell a financial instrument or any other investment or currency. This communication does not constitute investment research within the meaning of regulatory rules applicable in the European Economic Area, or research under the rules of the U.S. Self-Regulatory Organizations.</p>
+  <p>This information is made solely for professional and institutional clients as defined by the Swiss Financial Services Act, as well as qualified investors according to the Swiss Collective Investment Schemes Act. It is not intended for retail clients or non-qualified investors and consequently cannot be transmitted to any third party.</p>
+  <p>This communication is not directed to any person in any jurisdiction where, by reason of that person&rsquo;s nationality, residence or otherwise, its dissemination or use is prohibited. It cannot be quoted, reproduced, disclosed, distributed or otherwise referred to, in whole or in part, to any third party without the Bank&rsquo;s prior written consent.</p>
+  <p>This communication may contain information on past performances of a financial product, all kinds of economic and financial valuations and analyses, as well as opinions of the Bank or of third parties. Any market valuations, terms and calculation methods, yields and opinions expressed are subject to change without notice. The information and opinions contained herein have been compiled and provided in good faith, based on information obtained from sources believed to be trustworthy. However, such information has not been independently verified. No guarantee, representation, or warranty of any kind, whether express or implied, is provided by the Bank or by relevant data vendors and other sources with respect to the accuracy, reliability, currentness or exhaustiveness of the information communicated, the methodology employed or the prices contained herein.</p>
+  <p>Past performance is not a reliable indicator of current or future results. Any reference to the past performance of an investment does not guarantee its future performance. Fluctuations in exchange rates may adversely affect the value, price or income of any investment.</p>
+  <p>Nothing in the present communication constitutes investment, legal, accounting or tax advice. This information is purely objective since it does not take into consideration the personal situation (including financial knowledge and experience), the investment objectives and risk profile of any recipient. Moreover, certain financial instruments mentioned (in particular, but not exclusively, derivatives, options and futures) involve a high risk of loss and may not be suitable. Accordingly, recipients should consult their own advisors on such matters, including but not limited to the possible tax consequences of investing in any financial product mentioned herein, and make their own assessment of the suitability of such investment product.</p>
+  <p>Should a recipient make an investment on the basis of the present communication, the recipient alone shall bear the consequences thereof. In no event shall the Bank, its directors, employees, affiliates or agents be held responsible for damages of any kind arising out of the use of all or part of the information provided herein.</p>
+</div>
+</body></html>
