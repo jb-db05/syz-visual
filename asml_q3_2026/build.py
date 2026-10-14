@@ -89,29 +89,63 @@ def chart1(path):
     save(fig, path)
 
 
-# ------------------------------------------------------------------ Chart 2: YoY growth
+# ------------------------------------------------------------------ Chart 2: price vs. consensus EPS (Bloomberg)
+import pandas as pd
+import matplotlib.dates as mdates
+from matplotlib.ticker import FixedLocator, NullLocator
+
+BBG = pd.read_excel(f"{OUT}/data/ASML_bloomberg_weekly.xlsx").sort_values("Date")
+BBG.columns = ["date", "px", "eps", "ma40", "pe"]
+PE_ANCHOR = 30          # log axes scaled so price and EPS lines cross where forward P/E = 30x
+EPS_LIM = (0.3, 100)
+_i = BBG.set_index("date")
+PE5 = _i["pe"].loc["2021-10-15":].mean()
+_y = _i.loc[:_i.index[-1] - pd.DateOffset(years=1)].iloc[-1]   # last print one year earlier
+PX_1Y, EPS_1Y = (_i.px.iloc[-1] / _y.px - 1) * 100, (_i.eps.iloc[-1] / _y.eps - 1) * 100
+PE_1Y = _y.pe
+ATH, ATH_D = _i.px.max(), _i.px.idxmax()
+
+
 def chart2(path):
+    d = BBG
+    x = mdates.date2num(d["date"])
     fig, ax = plt.subplots(figsize=(12.5, 6.4), dpi=200)
-    fig.subplots_adjust(top=0.84, bottom=0.12, left=0.07, right=0.96)
+    fig.subplots_adjust(top=0.84, bottom=0.12, left=0.07, right=0.92)
     sc.style_ax(ax)
-    x = np.arange(len(YOY))
-    for xi, (lab, v, lvl) in zip(x, YOY):
-        col = sc.BLUEB if lab == "Revenue" else sc.ORANGE
-        alpha = 0.55 if lab == "EPS" else 0.95
-        ax.bar(xi, v, width=0.56, color=col, alpha=alpha, linewidth=0, zorder=3)
-        ax.annotate(f"+{v}%", (xi, v), xytext=(0, 6), textcoords="offset points", ha="center",
-                    color=col, fontsize=12, fontweight="bold")
-        ax.text(xi, 5, lvl, ha="center", va="bottom", color="white", fontsize=10.5, fontweight="bold", zorder=4)
-    ax.axhline(YOY[0][1], color=sc.NAVY, linestyle=sc.DASH, linewidth=1.1, alpha=0.85, zorder=2)
-    ax.text(len(YOY) - 0.5, YOY[0][1] + 2, "Group revenue growth", ha="right", va="bottom",
-            fontsize=9, color=sc.NAVY, fontweight="bold")
-    ax.set_xticks(x); ax.set_xticklabels([v[0] for v in YOY], fontsize=11, color=sc.NAVY, fontweight="bold")
-    ax.tick_params(axis="x", length=0)
-    ax.set_ylim(0, 155); ax.set_xlim(-0.6, len(YOY) - 0.4)
-    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0f}%"))
-    sc.header(fig, "ASML Q3 2026 — Year-on-Year Growth",
-              "Q3 2026 vs. Q3 2025, % · Q3 2026 level shown in each bar · dashed line = group revenue growth",
-              SRC + " · EPS growth includes a one-off equity stake revaluation (shaded lighter)")
+    ax2 = ax.twinx()
+    ax2.spines[["top", "left"]].set_visible(False); ax2.spines["right"].set_color(sc.SPINE)
+    ax2.tick_params(colors=sc.AXIS_TXT, labelsize=9.5, length=3)
+    eps = d["eps"].where(d["eps"] >= EPS_LIM[0])
+    ax.plot(x, eps, color=sc.ORANGE, linewidth=1.9, zorder=3, label="Consensus EPS, BEst (€, lhs)")
+    ax2.plot(x, d["px"], color=sc.BLUEB, linewidth=1.6, zorder=3, label="Share price (€, rhs)")
+    ax2.plot(x, d["ma40"], color=sc.NAVY, linewidth=1.1, linestyle=sc.DASH, alpha=0.8, zorder=3,
+             label="40-week moving average (rhs)")
+    for a, lim in ((ax, EPS_LIM), (ax2, (EPS_LIM[0] * PE_ANCHOR, EPS_LIM[1] * PE_ANCHOR))):
+        a.set_yscale("log"); a.set_ylim(*lim); a.yaxis.set_minor_locator(NullLocator())
+    ax.yaxis.set_major_locator(FixedLocator([0.5, 1, 2, 5, 10, 20, 50, 100]))
+    ax2.yaxis.set_major_locator(FixedLocator([10, 20, 50, 100, 200, 500, 1000, 2000]))
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:g}"))
+    ax2.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:,.0f}"))
+    last = d.iloc[-1]
+    ax.plot(x[-1], last.eps, "o", color=sc.ORANGE, ms=5, zorder=4)
+    ax.annotate(f"{last.eps:.1f}", (x[-1], last.eps), xytext=(10, -14), textcoords="offset points",
+                color=sc.ORANGE, fontsize=10, fontweight="bold")
+    ax2.plot(x[-1], last.px, "o", color=sc.BLUEB, ms=5, zorder=4)
+    ax2.annotate(f"{last.px:,.0f}", (x[-1], last.px), xytext=(10, 6), textcoords="offset points",
+                 color=sc.BLUEB, fontsize=10, fontweight="bold")
+    ax.text(0.985, 0.04, f"Forward P/E {last.pe:.1f}x (5-yr avg. {PE5:.1f}x)", transform=ax.transAxes,
+            ha="right", va="bottom", fontsize=10, color=sc.NAVY, fontweight="bold",
+            bbox=dict(facecolor="white", edgecolor=sc.SPINE, boxstyle="round,pad=0.4"))
+    ax.set_xlim(x[0] - 40, x[-1] + 620)
+    ax.xaxis.set_major_locator(FixedLocator(mdates.date2num(pd.date_range("2006", d["date"].iloc[-1], freq="2YS"))))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+    h1, l1 = ax.get_legend_handles_labels(); h2, l2 = ax2.get_legend_handles_labels()
+    leg = ax.legend(h2 + h1, l2 + l1, loc="upper left", frameon=False, fontsize=10.5)
+    for t in leg.get_texts():
+        t.set_color(sc.NAVY); t.set_fontweight("bold")
+    sc.header(fig, "ASML — Share Price vs. Consensus Earnings",
+              f"Weekly, Apr 2005–Oct 2026 · log scales aligned so the lines cross at {PE_ANCHOR}x forward P/E",
+              sc.source_line("Bloomberg", ASOF, "EPS below €0.3 (2009) not shown"))
     save(fig, path)
 
 
@@ -158,7 +192,7 @@ def chart3(path):
 
 sc.CROPS["bars"] = (0.122, 0.052)
 sc.CROPS["duo"] = (0.115, 0.052)
-charts = [("c1", chart1, "bars"), ("c2", chart2, "bars"), ("c3", chart3, "duo")]
+charts = [("c1", chart1, "bars"), ("c2", chart2, "line"), ("c3", chart3, "duo")]
 for name, fn, kind in charts:
     png = f"{OUT}/ASML_Q3_2026_Chart{name[1]}.png"
     fn(png)
@@ -168,10 +202,10 @@ for name, fn, kind in charts:
 P = lambda s: f"<p>{s}</p>"
 fill = {
     "DOC_TYPE": "Research Comment",
-    "THEME": "European Equities",
+    "THEME": "Earnings Report",
     "TITLE": "ASML: Margins and Capacity Drive Upgrades",
     "DATE": DATE,
-    "W1": "64", "W2": "62", "W3": "76",
+    "W1": "64", "W2": "66", "W3": "76",
     "INTRO_PARAGRAPHS": P(
         "ASML&rsquo;s Q3 2026 results deliver the type of beat we look for: margin and services, not just "
         "volume. Revenue of &euro;11.7bn, up 55% YoY, was broadly in line, but the gross margin of 57.5% came in "
@@ -198,15 +232,17 @@ fill = {
         "than weaker demand. The guidance beats are modest in revenue terms, but a Q4 gross margin of around 57% "
         "implies about 7% EBIT upside, according to UBS."
     ),
-    "H_C2": "Services and EUV carry the growth",
-    "C2_TITLE": "ASML Q3 2026 &ndash; Year-on-Year Growth",
-    "C2_SUB": "Q3 2026 vs. Q3 2025, % &middot; Q3 2026 level in each bar &middot; dashed line = group revenue growth",
+    "H_C2": "Earnings, not the multiple, drive the shares",
+    "C2_TITLE": "ASML &ndash; Share Price vs. Consensus Earnings",
+    "C2_SUB": f"Weekly, Apr 2005&ndash;Oct 2026 &middot; BEst EPS (lhs) vs. price and 40-week average (rhs) &middot; "
+              f"log scales cross at {PE_ANCHOR}x P/E",
     "C2_IMG": f"{WORK}/c2_crop.png",
     "C2_COMMENT": P(
-        "EUV system sales rose 94% and Installed Base Management 68%, both well ahead of group revenue growth of "
-        "55%, while EPS rose 136% on operating leverage and the one-off gain. The installed base matters most for "
-        "the earnings path: upgrades and services scale with a growing EUV fleet, are less cyclical than new tools "
-        "and support margins even when shipments are capped by capacity."
+        f"Over the past year the shares have risen {PX_1Y:.0f}% while consensus EPS has risen {EPS_1Y:.0f}%, so the "
+        f"forward P/E has eased from {PE_1Y:.1f}x to {BBG.pe.iloc[-1]:.1f}x, slightly below its five-year average "
+        f"of {PE5:.1f}x. The rally has been earned rather than rerated. At &euro;{BBG.px.iloc[-1]:,.0f}, the price "
+        f"sits {(BBG.px.iloc[-1] / BBG.ma40.iloc[-1] - 1) * 100:.0f}% above its 40-week average and "
+        f"{(1 - BBG.px.iloc[-1] / ATH) * 100:.0f}% below its {ATH_D:%B} high, leaving room for the upgrades we expect."
     ),
     "H_C3": "Capacity, not demand, is the constraint",
     "C3_TITLE": "ASML &ndash; Capacity and Pricing Drive the Earnings Path",
@@ -247,7 +283,7 @@ fill = {
         "lithography and the services annuity its installed base creates. The qualifier is China: at 23% of "
         "system sales, it is the main source of downside to estimates should export restrictions tighten."
     ),
-    "SOURCE_LINE": "Source: Syz Research, ASML, UBS, BNP Paribas",
+    "SOURCE_LINE": "Source: Syz Research, Bloomberg, ASML, UBS, BNP Paribas",
 }
 
 html = open("/home/claude/template.html").read()
