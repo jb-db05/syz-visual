@@ -1,7 +1,7 @@
 """ASML Q3 2026 — Syz Visual Research Comment build (data -> charts -> PDF).
 
 All figures are taken from the supplied research summary (14 October 2026):
-ASML Q3 2026 release, UBS and BNP Paribas notes. Nothing is extrapolated;
+ASML Q3 2026 release and sell-side research notes. Nothing is extrapolated;
 the only derived figure is the compounded capacity index in Chart 3.
 
 Update the DATA block for the next quarter and re-run:  python3 build.py
@@ -41,10 +41,10 @@ CAP = [("2026", 100.0, "base"), ("2027", 130.0, "plan"), ("2028", 169.0, "study"
 # Gross margin, %
 GM = [("Q3 26\nreported", 57.5, "act"), ("Q4 26\nguidance", 57.0, "guide"),
       ("FY26\nguidance", 56.0, "guide"), ("2028\nconsensus", 56.5, "cons"),
-      ("2028\nBNP Paribas", 60.0, "broker")]
+      ("2028\nsell-side est.", 60.0, "broker")]
 
 sc.setup_fonts()
-SRC = sc.source_line("ASML, UBS, BNP Paribas", ASOF)
+SRC = sc.source_line("ASML, sell-side research", ASOF)
 
 
 def save(fig, path):
@@ -185,7 +185,7 @@ def chart3(path):
         ax.tick_params(axis="x", length=0)
     sc.header(fig, "ASML — Capacity and Pricing Drive the Earnings Path",
               "Capacity index compounded from ASML’s framework · gross margin y-axis starts at 50% · light bars = not committed",
-              SRC + " · 2028 capacity step under investigation · >60% 2028 margin is a BNP Paribas estimate, not guidance",
+              SRC + " · 2028 capacity step under investigation · >60% 2028 margin is a sell-side estimate, not guidance",
               title_y=0.945, sub_y=0.906, bar_y=0.886)
     save(fig, path)
 
@@ -217,8 +217,8 @@ fill = {
     ) + P(
         "The headline EPS beat needs a discount. EPS of &euro;12.95, up 136% YoY, was about 21% ahead of "
         "consensus, but part of that reflects a one-off revaluation of an equity stake. We anchor on the operating "
-        "line, where the beat is smaller but recurring. The tension for the shares is positioning: BNP Paribas "
-        "cautions that investors may already expect stronger earnings and will look for explicit 2027 guidance."
+        "line, where the beat is smaller but recurring. The tension for the shares is positioning: sell-side analysts "
+        "caution that investors may already expect stronger earnings and will look for explicit 2027 guidance."
     ),
     "H_C1": "A quality beat, flattered at the EPS line",
     "C1_TITLE": "ASML Q3 2026 &ndash; Results vs. Consensus",
@@ -230,7 +230,7 @@ fill = {
         "upgrades the main operational outperformer. EUV system sales of &euro;4.1bn were the one shortfall, 7% "
         "below consensus despite 94% growth; in a capacity-constrained year we read this as shipment timing rather "
         "than weaker demand. The guidance beats are modest in revenue terms, but a Q4 gross margin of around 57% "
-        "implies about 7% EBIT upside, according to UBS."
+        "implies about 7% EBIT upside, according to sell-side estimates."
     ),
     "H_C2": "Earnings, not the multiple, drive the shares",
     "C2_TITLE": "ASML &ndash; Share Price vs. Consensus Earnings",
@@ -247,7 +247,7 @@ fill = {
     "H_C3": "Capacity, not demand, is the constraint",
     "C3_TITLE": "ASML &ndash; Capacity and Pricing Drive the Earnings Path",
     "C3_SUB": "Capacity compounded from ASML&rsquo;s framework &middot; light bars = 2028 step under study and "
-              "BNP Paribas &gt;60% estimate",
+              "sell-side &gt;60% estimate",
     "C3_IMG": f"{WORK}/c3_crop.png",
     "C3_COMMENT_1": P(
         "Capacity is now the binding variable. ASML&rsquo;s release clarifies that its framework envisaged a 30% "
@@ -261,16 +261,16 @@ fill = {
     ),
     "H_C3B": "Pricing opens a path to 60% gross margins",
     "C3_COMMENT_2": P(
-        "Pricing is the second lever. According to BNP Paribas, concluded price negotiations should contribute "
-        "partially in 2027 and fully in 2028, and its analysis points to gross margins above 60% in 2028, against "
-        "consensus of about 56.5%. That is a broker assessment, not company guidance, but the direction matches "
+        "Pricing is the second lever. Sell-side analysts expect concluded price negotiations to contribute "
+        "partially in 2027 and fully in 2028, with gross margins potentially above 60% in 2028, against "
+        "consensus of about 56.5%. That is an analyst assessment, not company guidance, but the direction matches "
         "what ASML delivered this quarter: 57.5% in Q3 and around 57% guided for Q4, against around 56% for the "
-        "full year. Both brokers expect upgrades: UBS sees 5&ndash;10% consensus EPS upgrades for 2027&ndash;28 "
-        "(Buy, &euro;2,350 target), and BNP Paribas also expects upgrades (Outperform, &euro;2,450 target). The "
+        "full year. The sell-side reaction points the same way, with 5&ndash;10% consensus EPS upgrades expected "
+        "for 2027&ndash;28 and price targets of &euro;2,350&ndash;2,450. The "
         "main risk is China, at 23% of system sales versus 14% in Q2, if export restrictions tighten."
     ),
     "LEADIN_SECTION": '<div class="sec"><h2>Valuation: the growth has to arrive</h2></div>' + P(
-        "On UBS&rsquo;s earnings assumptions, the shares trade on about 25x 2027E and 17x 2028E earnings. The "
+        "On sell-side earnings forecasts, the shares trade on about 25x 2027E and 17x 2028E earnings. The "
         "compression between the two years is the investment case, and it holds only if capacity is delivered and "
         "pricing reaches the P&amp;L on schedule; these multiples should not be read against a separate consensus "
         "EPS series. Capacity execution, slower customer capital spending, High-NA adoption delays and elevated "
@@ -283,7 +283,7 @@ fill = {
         "lithography and the services annuity its installed base creates. The qualifier is China: at 23% of "
         "system sales, it is the main source of downside to estimates should export restrictions tighten."
     ),
-    "SOURCE_LINE": "Source: Syz Research, Bloomberg, ASML, UBS, BNP Paribas",
+    "SOURCE_LINE": "Source: Syz Research, Bloomberg, ASML, sell-side research",
 }
 
 html = open("/home/claude/template.html").read()
