@@ -73,7 +73,7 @@ BODY = f"""
 <h3><span class="n">6.</span> What to watch next</h3>
 <p>Second-quarter results in early November, the launch on 19 November, first sales figures, and news on the online version and a possible PC release.</p>
 <div class="concl"><h3>Conclusion</h3>
-<p>Take-Two owns some of the strongest franchises in entertainment and is a month away from its most important launch in a decade. The opportunity is real, but so is the risk around a single date. Building a position in stages, around the launch rather than before it, seems prudent; USD 188 is the level to watch.</p></div>
+<p>Take-Two owns some of the strongest franchises in entertainment and is a month away from its most important launch in a decade. The opportunity is real, but so is the risk around a single date.</p></div>
 </div>
 </div>
 
